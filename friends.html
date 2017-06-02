@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+    <style: background-color="white"/>
+      <ul class="nav navbar-nav">
+        <!--<li><a href="/">Home</a></li>-->
+        <li class="active"><a href="/friends">Requests</a></li>
+        <li  ><a href="/logout">Logout</a></li>
+      </ul>
+    </ul>
+  </div><!--/.nav-collapse -->
+</div>
+</nav>
+
+<div class="col-md-12">
+  <div class="page-header">
+    <h1>New requests</h1>
+  </div>
+  {% for user in users %}
+  <div  class="col-md-2">
+    <h3>{{user}}</h1>
+    </div> 
+    <div  class="col-md-2">
+      <form action="/acceptfriend" method="POST">
+        <input type = "hidden"  value = "{{user}}" name = "requested" id>
+        <input type="submit" name="subaccept" value="ACCEPT">
+      </form>
+    </div>
+    <div class="col-md-2">
+      <form action="/rejectfriend" method="POST">
+        <input type="submit" name="subreject" value="REJECT">
+      </form>
+    </div>
+    <hr>
+    <br>
+    {% endfor %}
+
+  </div>
+  <script type="text/javascript">
+    var ele =document.getElementById("inp");
+    ele.display=none;
+  </script>
+  {% endblock %}
